@@ -1,4 +1,4 @@
 def say_hello():
     # Students will change 'None' to 'Hello World'
-    'Hello World'
+    return 'Hello World'
     
