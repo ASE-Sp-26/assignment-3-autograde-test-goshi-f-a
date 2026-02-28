@@ -19,14 +19,12 @@ jobs:
       with:
         test-name: Check Hello World
         setup-command: ''
-        command: $$python3 -c "from hello import say_hello; assert say_hello() ==
-          'Hello World' or say_hello() == 'hello world' or say_hello() == 'Hello world'
-          or say_hello() == 'Hello World!'"$$
+        command: python3 -c "from hello import say_hello; assert say_hello().strip() == 'Hello World'"
         timeout: 1
         max-score: 10
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
-      env:
-        CHECK-HELLO-WORLD_RESULTS: "${{steps.check-hello-world.outputs.result}}"
       with:
         runners: check-hello-world
+      env:
+        CHECK-HELLO-WORLD_RESULTS: "${{steps.check-hello-world.outputs.result}}"
